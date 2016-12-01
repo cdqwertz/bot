@@ -17,7 +17,7 @@ class sentence:
 		return None
 	
 	def build(self):
-		blueprint = ["subject", "verb", "object"]
+		blueprint = ["subject", "auxiliary_verb", "verb", "object", "location", "time"]
 		if self.is_question:
 			blueprint = ["auxiliary_verb", "subject",  "verb", "object"]
 		
