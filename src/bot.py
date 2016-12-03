@@ -19,5 +19,7 @@ class bot:
 			if result:
 				output = result
 				break
+		
+		self.history.append(output)
 				
 		return output

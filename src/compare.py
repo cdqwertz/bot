@@ -73,7 +73,6 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 	j = 0
 	result = True
 	while i < len(string) and j < len(pattern):
-		print("I: ", i, " J: ", j)
 		if type(pattern[j]) == type([]):
 			m = False
 			for w in pattern[j]:

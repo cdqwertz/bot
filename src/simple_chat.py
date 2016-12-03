@@ -3,10 +3,10 @@ from bot import *
 from user import *
 from chatroom import *
 
-import test_plugin
+import plugin_default
 
 my_bot = bot("bot")
-my_bot.add_plugin(test_plugin.test_plugin())
+my_bot.add_plugin(plugin_default.plugin_default())
 
 my_chatroom = chatroom(my_bot)
 
