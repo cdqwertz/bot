@@ -10,9 +10,9 @@ class plugin_default():
 		out = ""
 		
 		if compare.compare(text, [["hi", "hello", "hey"], [bot.name, ""]]):
-			out = random.choice(["hello", "hi", "hey"]) + " " + msg.user.name + random.choice(["!", ".", ""])
+			out = random.choice(["Hello", "Hi", "Hey"]) + " " + msg.user.name + random.choice(["!", ".", ""])
 		elif compare.compare(text, [["bye"], [bot.name, ""]]) or compare.compare(text, [["see"], ["you"], ["soon", ""]]):
-			out = random.choice(["bye", "see you soon"]) + random.choice(["!", ""])
+			out = random.choice(["Bye", "See you soon"]) + random.choice(["!", ""])
 		elif compare.compare(text, [["what", "whats", "what's"], ["is", ""], "the", "time"]):
 			hour = str(datetime.datetime.now().hour) 
 			hour = (2-len(hour)) * "0" + hour

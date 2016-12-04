@@ -72,6 +72,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 	i = 0
 	j = 0
 	result = True
+	output = {}
 	while i < len(string) and j < len(pattern):
 		if type(pattern[j]) == type([]):
 			m = False
@@ -86,6 +87,10 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 					m = True
 					i -= 1
 					break
+				elif w.startswith("<") and w.endswith(">"):
+					output[pattern[j]] = string[i]
+					m = True
+					break
 					
 			result = result and m
 			if result == False:
@@ -99,6 +104,14 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 			elif pattern[j] == "":
 				m = True
 				i -= 1
+			elif pattern[j].startswith("<") and pattern[j].endswith(">"):
+				output[pattern[j]] = string[i]
+				m = True
+			elif pattern[j].startswith("[") and pattern[j].endswith("]"):
+				if not(pattern[j] in output):
+					output[pattern[j]] = ""
+				output[pattern[j]] += string[i] + " "
+				m = True
 			
 			result = result and m
 			print(" -> ", result)
@@ -107,7 +120,9 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 		
 		i += 1
 		j += 1
-	return result
+		
+	output["result"] = result
+	return output
 	
 	
 	
