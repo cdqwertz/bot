@@ -11,19 +11,29 @@ class plugin_default():
 		
 		if compare.compare(text, [["hi", "hello", "hey"], [bot.name, ""]]):
 			out = random.choice(["Hello", "Hi", "Hey"]) + " " + msg.user.name + random.choice(["!", ".", ""])
+			
 		elif compare.compare(text, [["bye"], [bot.name, ""]]) or compare.compare(text, [["see"], ["you"], ["soon", ""]]):
 			out = random.choice(["Bye", "See you soon"]) + random.choice(["!", ""])
+			
+		elif compare.compare(text, ["how", "are", "you", ["today", ""]]):
+			out = random.choice(["I am fine!", "I am fine and you?"])
+			
+		elif compare.compare(text, ["what", "is", "your", "name"]):
+			out = "My name is " + bot.name + "."
+			
 		elif compare.compare(text, [["what", "whats", "what's"], ["is", ""], "the", "time"]):
 			hour = str(datetime.datetime.now().hour) 
 			hour = (2-len(hour)) * "0" + hour
 			minute = str(datetime.datetime.now().minute)
 			minute = (2-len(minute)) * "0" + minute
 			out = "It is " + hour + ":" + minute + random.choice(["!", "."])
+			
 		elif compare.compare(text, [["what", "whats", "what's"], ["is", ""], ["the", "today's", "todays"], "date", ["today", ""]]):
 			year = str(datetime.datetime.now().year) 
 			month = str(datetime.datetime.now().month)
 			day = str(datetime.datetime.now().day)
 			out = "It is the " + day + " " + month + " " + year + random.choice(["!", "."])
+			
 		else:
 			return None
 			

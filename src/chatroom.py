@@ -11,6 +11,7 @@ class chatroom:
 		self.users.append(user)
 		
 	def on_msg(self, msg):
+		self.history.append(msg)
 		out = self.bot.on_msg(msg)
 		
 		if out:

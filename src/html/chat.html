@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>cdqwertz's chatbot</title>
+		<style>
+			body {
+				background : #dddddd;
+			}
+		
+			#my_form {
+				position : fixed;
+				bottom : 0;
+				left : 0;
+				width : 100%;
+				height : 40px;
+				margin : 0;
+				padding : 0;
+				
+				background : #f0f0f0;
+				box-shadow : 0 -1px 3px #aaa;
+			}
+			
+			#my_form #message {
+				width : calc(100% - 50px);
+				height : 100%;
+				left : 0;
+				
+				border : none;
+				background : #f0f0f0;
+				
+			}
+			
+			#my_form #send {
+				height : 100%;
+				width : 50px;
+				float: right;
+				
+				border : none;
+				background : #99cc99;
+			}
+			
+			#content {
+				position : absolute;
+				top : 0;
+				left : 0;
+				width : 100%;
+				height: calc(100% - 40px);
+				padding : 10px;
+				
+				box-sizing : border-box;
+				overflow : scroll;
+			}
+			
+			#content .bot {
+				text-align : left;
+				color : #a22;
+			}
+			
+			#content .user {
+				text-align : left;
+				color : #555;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<!-- messages -->
+		</div>
+		
+		<form id="my_form" method="get">
+			<input type="text" id="message" name="message" autofocus="autofocus">
+			<input type="submit" value="Send" id="send">
+		</form>
+	</body>
+</html>
