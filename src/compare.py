@@ -1,3 +1,20 @@
+import utils
+patterns = {}
+
+def load_patterns(path):
+	string = utils.read_file(path)
+	lines = string.split("\n")
+	for line in lines:
+		if line != "":
+			parts = line.split("=", 1)
+			if len(parts) == 2:
+				patterns[parts[0].strip()] = parts[1].strip()
+	
+
+def get_pattern(name):
+	if name in patterns:
+		return parse_pattern(patterns[name])
+
 def parse_pattern(p):
 	pattern = []
 	
