@@ -1,1 +1,11 @@
-default_hello = ("hi", "hello", "hey"), ("#my_name", "")
+default_how_are_you = "how", "are", "you", ("today", "")
+math_subtract = "<a>", ("minus", "-"), "<b>", ("equals", "=", "")
+default_hello = ("hi", "hello", "hey")
+math_add = "<a>", ("plus", "added", "+"), ("to", ""), "<b>", ("equals", "=", "")
+default_time = ("what", "whats", "what's"), ("is", ""), "the", "time"
+math_multiply = "<a>", ("times", "multiplied", "*"), ("by", ""), "<b>", ("equals", "=", "")
+default_name = "what", "is", "your", "name"
+math_divide = "<a>", ("divided", "/"), ("by", ""), "<b>", ("equals", "=", "")
+default_bye = ("bye", "bbl")
+default_see_you_soon = "see", "you", ("soon", "")
+default_date = ("what", "whats", "what's"), ("is", ""), ("the", "today's", "todays"), "date", ("today", "")

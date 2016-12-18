@@ -5,6 +5,9 @@ class plugin_todo():
 	def __init__(self):
 		pass
 		
+	def load(self, bot):
+		pass
+		
 	def on_msg(self, bot, msg):
 		text = msg.text
 		out = ""

@@ -5,6 +5,23 @@ class plugin_math():
 	def __init__(self):
 		pass
 		
+	def load(self, bot):
+		bot.language.register_pattern("math_multiply", compare.pattern_to_string(
+						["<a>", ["times", "multiplied", "*"], ["by", ""], "<b>", ["equals", "=", ""]]
+						))
+						
+		bot.language.register_pattern("math_add", compare.pattern_to_string(
+						["<a>", ["plus", "added", "+"], ["to", ""], "<b>", ["equals", "=", ""]]
+						))
+						
+		bot.language.register_pattern("math_subtract", compare.pattern_to_string(
+						["<a>", ["minus", "-"], "<b>", ["equals", "=", ""]]
+						))
+						
+		bot.language.register_pattern("math_divide", compare.pattern_to_string(
+						["<a>", ["divided", "/"], ["by", ""], "<b>", ["equals", "=", ""]]
+						))
+		
 	def is_number(self, string):
 		if string.startswith("-") and string[1:].isdigit():
 			return True
@@ -20,8 +37,8 @@ class plugin_math():
 		text = msg.text
 		out = ""
 		
-		if compare.compare(text, ["<a>", ["times", "multiplied", "*"], ["by", ""], "<b>", ["equals", "=", ""]]):
-			values = compare.compare(text, ["<a>", ["times", "multiplied", "*"], ["by", ""], "<b>", ["equals", "=", ""]])
+		if compare.compare(text, bot.language.get_pattern("math_multiply")):
+			values = compare.compare(text, bot.language.get_pattern("math_multiply"))
 			
 			if self.is_number(values["<a>"]) and self.is_number(values["<b>"]):
 				a = float(values["<a>"])
@@ -29,8 +46,8 @@ class plugin_math():
 				
 				out = values["<a>"] + " times " + values["<b>"] + " equals " + str(a * b)
 				
-		elif compare.compare(text, ["<a>", ["plus", "added", "+"], ["to", ""], "<b>", ["equals", "=", ""]]):
-			values = compare.compare(text, ["<a>", ["plus", "added", "+"], ["to", ""], "<b>", ["equals", "=", ""]])
+		elif compare.compare(text, bot.language.get_pattern("math_add")):
+			values = compare.compare(text, bot.language.get_pattern("math_add"))
 			
 			if self.is_number(values["<a>"]) and self.is_number(values["<b>"]):
 				a = float(values["<a>"])
@@ -38,8 +55,8 @@ class plugin_math():
 				
 				out = values["<a>"] + " plus " + values["<b>"] + " equals " + str(a + b)
 				
-		elif compare.compare(text, ["<a>", ["minus", "-"], "<b>", ["equals", "=", ""]]):
-			values = compare.compare(text, ["<a>", ["minus", "-"], "<b>", ["equals", "=", ""]])
+		elif compare.compare(text, bot.language.get_pattern("math_subtract")):
+			values = compare.compare(text, bot.language.get_pattern("math_subtract"))
 			
 			if self.is_number(values["<a>"]) and self.is_number(values["<b>"]):
 				a = float(values["<a>"])
@@ -47,8 +64,8 @@ class plugin_math():
 				
 				out = values["<a>"] + " minus " + values["<b>"] + " equals " + str(a - b)
 				
-		elif compare.compare(text, ["<a>", ["divided", "/"], ["by", ""], "<b>", ["equals", "=", ""]]):
-			values = compare.compare(text, ["<a>", ["divided", "/"], ["by", ""], "<b>", ["equals", "=", ""]])
+		elif compare.compare(text, bot.language.get_pattern("math_divide")):
+			values = compare.compare(text, bot.language.get_pattern("math_divide"))
 			
 			if self.is_number(values["<a>"]) and self.is_number(values["<b>"]):
 				a = float(values["<a>"])

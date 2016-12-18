@@ -1,20 +1,46 @@
 import utils
-patterns = {}
 
-def load_patterns(path):
-	string = utils.read_file(path)
-	lines = string.split("\n")
-	for line in lines:
-		if line != "":
-			parts = line.split("=", 1)
-			if len(parts) == 2:
-				patterns[parts[0].strip()] = parts[1].strip()
+class language:
+	def __init__(self, path):
+		self.patterns = {}
+		self.path = path
+		self.load_patterns()
+
+	def load_patterns(self):
+		string = utils.read_file(self.path)
+		lines = string.split("\n")
+		for line in lines:
+			if line != "":
+				parts = line.split("=", 1)
+				if len(parts) == 2:
+					self.patterns[parts[0].strip()] = parts[1].strip()
+				
+	def save_patterns(self):
+		string = ""
+		for k in self.patterns.keys():
+			string += k + " = " + self.patterns[k] + "\n"
+		
+		utils.save_file(self.path, string)
 	
 
-def get_pattern(name):
-	if name in patterns:
-		return parse_pattern(patterns[name])
-
+	def get_pattern(self, name):
+		if name in self.patterns:
+			return parse_pattern(self.patterns[name])
+		
+	def register_pattern(self, name, pattern):
+		self.patterns[name] = pattern
+		self.save_patterns()
+	
+def pattern_to_string(pattern):
+	string = []
+	for i in pattern:
+		if type(i) == type([]):
+			string.append("(" + pattern_to_string(i) + ")")
+		else:
+			string.append("\"" + i + "\"")
+			
+	return ", ".join(string)
+	
 def parse_pattern(p):
 	pattern = []
 	
