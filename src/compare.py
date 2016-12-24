@@ -14,10 +14,12 @@ class language:
 				parts = line.split("=", 1)
 				if len(parts) == 2:
 					self.patterns[parts[0].strip()] = parts[1].strip()
-				
+					
 	def save_patterns(self):
 		string = ""
-		for k in self.patterns.keys():
+		keys = list(self.patterns.keys())
+		keys.sort()
+		for k in keys:
 			string += k + " = " + self.patterns[k] + "\n"
 		
 		utils.save_file(self.path, string)
@@ -105,6 +107,24 @@ def parse_string(string_raw):
 		x += 1
 	
 	return string
+	
+def compare_words(word, pattern):
+	score = 0.0
+	i = 0
+	for letter in word:
+		if len(pattern) > i and letter == pattern[i]:
+			score += 1.0
+		elif len(pattern) > i and i > 0 and letter == pattern[i-1]:
+			i -= 1
+			score += 0.5
+		
+		i += 1
+	
+	try:
+		return (score/float(len(word)))
+	except ZeroDivisionError:
+		print("Zero division!")
+		return 0.0
 
 def compare(string_raw = "",  pattern = None, pattern_raw = None):
 	if not(pattern):
@@ -120,7 +140,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 		if type(pattern[j]) == type([]):
 			m = False
 			for w in pattern[j]:
-				if w == string[i]:
+				if compare_words(w, string[i]) > 0.6:
 					m = True
 					break
 				elif w == "?":
@@ -140,7 +160,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 				return False
 		else:
 			m = False
-			if pattern[j] == string[i]:
+			if compare_words(pattern[j], string[i]) > 0.6:
 				m = True
 			elif pattern[j] == "?":
 				m = True
@@ -157,7 +177,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 				m = True
 			
 			result = result and m
-			print(" -> ", result)
+			#print(" -> ", result)
 			if result == False:
 				return False
 		

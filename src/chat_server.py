@@ -39,7 +39,8 @@ class requestHandler(http.server.BaseHTTPRequestHandler):
 		if msg == ":clear":
 			my_chatroom.history = []
 		else:
-			out = my_chatroom.on_msg(message(msg.lower(), my_user))
+			if msg != "":
+				out = my_chatroom.on_msg(message(msg.lower(), my_user))
 		
 		self.send_response(200)
 		self.send_header("Content-type", "text/html")

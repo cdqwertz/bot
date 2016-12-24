@@ -19,7 +19,7 @@ class plugin_todo():
 				
 			msg.user.data["todo:list"].append(values["[...]"].strip().replace("my ", "your "))
 			out = "I added \"" + values["[...]"].strip() + "\" to your todo list!"
-		elif compare.compare(text, ["what", "do", "i", ["still", ""], ["have", "need"], "to", "do", ["today", ""]]):
+		elif compare.compare(text, ["what", "do", "i", ["still", ""], ["have", "need"], ["to", "todo"], ["do", ""], ["today", ""]]):
 			if not("todo:list" in msg.user.data):
 				msg.user.data["todo:list"] = []
 				
