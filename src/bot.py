@@ -2,7 +2,7 @@ from message import *
 import compare
 
 class bot:
-	def __init__(self, name = "", language = compare.language("patterns/patterns_en.txt")):
+	def __init__(self, name = "", language = compare.language("patterns/patterns_en.txt", "words/words_en.txt")):
 		self.name = name
 		self.plugins = []
 		self.users = []

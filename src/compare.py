@@ -1,10 +1,15 @@
 import utils
 
 class language:
-	def __init__(self, path):
+	def __init__(self, path_patterns, path_words):
 		self.patterns = {}
-		self.path = path
+		self.words = {}
+		
+		self.path = path_patterns
+		self.path_words = path_words
+		
 		self.load_patterns()
+		self.load_words()
 
 	def load_patterns(self):
 		string = utils.read_file(self.path)
@@ -14,7 +19,7 @@ class language:
 				parts = line.split("=", 1)
 				if len(parts) == 2:
 					self.patterns[parts[0].strip()] = parts[1].strip()
-					
+		
 	def save_patterns(self):
 		string = ""
 		keys = list(self.patterns.keys())
@@ -32,6 +37,76 @@ class language:
 	def register_pattern(self, name, pattern):
 		self.patterns[name] = pattern
 		self.save_patterns()
+		
+	def train(self, name, s):
+		pattern = parse_pattern(self.patterns[name])
+		string = parse_string(s)
+		i = 0
+		j = 0
+		while j < len(string):
+			word = string[j]
+		
+			if i < len(pattern):
+				if type(pattern[i]) == type([]):
+					if not(word in pattern[i]) and not("" in pattern[i]) and not("?" in pattern[i]):
+						pattern[i].append(word)
+						
+				else:
+					if not(pattern[i].startswith("<")) and not(pattern[i].startswith("[")) and not(pattern[i] == "?"):
+						if pattern[i] != word:
+							if j+1 < len(string) and False:
+								#deactivated (TODO)
+								found = False
+								w = string[j+1]
+								k = i
+								while k < len(pattern) and not(found):
+									if type(pattern[k]) == type([]):
+										print(word, " type(pattern[k]) == type([])")
+										if w in pattern[k]:
+											pattern.insert(i, [word, ""])
+											found = True
+									else:
+										if w == pattern[k]:
+											pattern.insert(i, [word, ""])
+											found = True
+									k += 1
+								
+								if not(found):
+									a = pattern[i]
+									pattern[i] = [a, word]
+								
+							else:
+								a = pattern[i]
+								pattern[i] = [a, word]
+					
+			else:
+				pattern.append(word)
+				
+			i += 1
+			j += 1
+		
+		self.patterns[name] = pattern_to_string(pattern)
+		self.save_patterns()
+		
+	def load_words(self):
+		string = utils.read_file(self.path_words)
+		lines = string.split("\n")
+		name = ""
+		for line in lines:
+			if line != "":
+				if line.startswith("\t"):
+					s = line.strip("\t ")
+					if s != "":
+						if s.startswith("(") and s.endswith(")"):
+							pass
+						else:
+							parts = s.split(" ")
+							word_name = parts[0]
+							word_value = parts[1]
+							self.words[name][word_name] = word_value
+				else:
+					name = line
+					self.words[name] = {}
 	
 def pattern_to_string(pattern):
 	string = []
@@ -126,7 +201,7 @@ def compare_words(word, pattern):
 		print("Zero division!")
 		return 0.0
 
-def compare(string_raw = "",  pattern = None, pattern_raw = None):
+def compare(string_raw = "",  pattern = None, pattern_raw = None, words = None):
 	if not(pattern):
 		pattern = parse_pattern(pattern_raw)
 		
@@ -184,8 +259,14 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None):
 		i += 1
 		j += 1
 		
+	if words:
+		for word in string:
+			for k in words.keys():
+				for w in words[k].keys():
+					if compare_words(word, w) > 0.6:
+						output[k] = words[k][w]
+		
 	output["result"] = result
 	return output
-	
-	
-	
+
+

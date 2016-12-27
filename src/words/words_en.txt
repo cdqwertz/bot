@@ -1,0 +1,26 @@
+date
+	(word value)
+	tomorrow 1
+	today 0
+	yesterday -1
+	
+time
+	(word value)
+	now 0
+	later 1
+	soon 2
+	
+look/feeling
+	(word value)
+	good 1
+	fine 1
+	bad -1
+	great 2
+	nice 1
+	ok 0
+	sad -1
+	
+speed
+	(word value)
+	slow -1
+	fast 2
