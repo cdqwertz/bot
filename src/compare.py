@@ -54,8 +54,7 @@ class language:
 				else:
 					if not(pattern[i].startswith("<")) and not(pattern[i].startswith("[")) and not(pattern[i] == "?"):
 						if pattern[i] != word:
-							if j+1 < len(string) and False:
-								#deactivated (TODO)
+							if j+1 < len(string) and get_pattern_len(pattern) < len(string):
 								found = False
 								w = string[j+1]
 								k = i
@@ -107,6 +106,17 @@ class language:
 				else:
 					name = line
 					self.words[name] = {}
+
+def get_pattern_len(pattern):
+	length = 0
+	for i in pattern:
+		if type(i) == type([]):
+			if not("" in i):
+				length += 1
+		else:
+			length += 1
+			
+	return length
 	
 def pattern_to_string(pattern):
 	string = []

@@ -34,7 +34,7 @@ class plugin_default():
 						[["what", "whats", "what's"], ["is", ""], ["the", "today's", "todays"], "date", ["today", ""]]
 						))
 		
-	def on_msg(self, bot, msg):
+	def on_msg(self, bot, msg, i):
 		text = msg.text
 		out = ""
 		

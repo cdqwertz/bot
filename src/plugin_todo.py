@@ -8,7 +8,7 @@ class plugin_todo():
 	def load(self, bot):
 		pass
 		
-	def on_msg(self, bot, msg):
+	def on_msg(self, bot, msg, i):
 		text = msg.text
 		out = ""
 		

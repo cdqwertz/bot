@@ -9,4 +9,4 @@ math_add = "<a>", ("plus", "added", "+"), ("to", ""), "<b>", ("equals", "=", "")
 math_divide = "<a>", ("divided", "/"), ("by", ""), "<b>", ("equals", "=", "")
 math_multiply = "<a>", ("times", "multiplied", "*"), ("by", ""), "<b>", ("equals", "=", "")
 math_subtract = "<a>", ("minus", "-"), "<b>", ("equals", "=", "")
-test = "<a>", ("+", "plus"), "<b>"
+test = 

@@ -8,6 +8,7 @@ class bot:
 		self.users = []
 		self.history = []
 		self.language = language
+		self.wait_for_answer = -1
 		
 	def add_plugin(self, plugin):
 		self.plugins.append(plugin)
@@ -17,11 +18,15 @@ class bot:
 		self.history.append(msg)
 	
 		output = ""
-		for plugin in self.plugins:
-			result = plugin.on_msg(self, msg)
-			if result:
-				output = result
-				break
+		
+		if self.wait_for_answer == -1:
+			for i, plugin in enumerate(self.plugins):
+				result = plugin.on_msg(self, msg, i)
+				if result:
+					output = result
+					break
+		else:
+			output = self.plugins[self.wait_for_answer].answer(self, msg)
 		
 		self.history.append(output)
 				

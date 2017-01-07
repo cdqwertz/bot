@@ -33,7 +33,7 @@ class plugin_math():
 				return self.is_number(a[0]) and self.is_number(a[1])
 		return False
 	
-	def on_msg(self, bot, msg):
+	def on_msg(self, bot, msg, i):
 		text = msg.text
 		out = ""
 		
