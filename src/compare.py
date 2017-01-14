@@ -1,15 +1,15 @@
-import utils
+import utils, random
 
 class language:
-	def __init__(self, path_patterns, path_words):
+	def __init__(self, path_patterns, path_entities):
 		self.patterns = {}
-		self.words = {}
+		self.entities = {}
 		
 		self.path = path_patterns
-		self.path_words = path_words
+		self.path_entities = path_entities
 		
 		self.load_patterns()
-		self.load_words()
+		self.load_entities()
 
 	def load_patterns(self):
 		string = utils.read_file(self.path)
@@ -87,8 +87,8 @@ class language:
 		self.patterns[name] = pattern_to_string(pattern)
 		self.save_patterns()
 		
-	def load_words(self):
-		string = utils.read_file(self.path_words)
+	def load_entities(self):
+		string = utils.read_file(self.path_entities)
 		lines = string.split("\n")
 		name = ""
 		for line in lines:
@@ -102,10 +102,10 @@ class language:
 							parts = s.split(" ")
 							word_name = parts[0]
 							word_value = parts[1]
-							self.words[name][word_name] = word_value
+							self.entities[name][word_name] = word_value
 				else:
 					name = line
-					self.words[name] = {}
+					self.entities[name] = {}
 
 def get_pattern_len(pattern):
 	length = 0
@@ -211,7 +211,7 @@ def compare_words(word, pattern):
 		print("Zero division!")
 		return 0.0
 
-def compare(string_raw = "",  pattern = None, pattern_raw = None, words = None):
+def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = None):
 	if not(pattern):
 		pattern = parse_pattern(pattern_raw)
 		
@@ -269,14 +269,23 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, words = None):
 		i += 1
 		j += 1
 		
-	if words:
+	if entities:
 		for word in string:
-			for k in words.keys():
-				for w in words[k].keys():
+			for k in entities.keys():
+				for w in entities[k].keys():
 					if compare_words(word, w) > 0.6:
-						output[k] = words[k][w]
+						output[k] = entities[k][w]
 		
 	output["result"] = result
 	return output
 
+def generate_text(pattern):
+	string = []
+	for i in pattern:
+		if type(i) == type([]):
+			string.append(random.choice(i))
+		else:
+			string.append(i)
+			
+	return " ".join(string)
 

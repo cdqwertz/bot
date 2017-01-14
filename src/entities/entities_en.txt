@@ -3,6 +3,7 @@ date
 	tomorrow 1
 	today 0
 	yesterday -1
+	weekend 2
 	
 time
 	(word value)
@@ -23,4 +24,4 @@ look/feeling
 speed
 	(word value)
 	slow -1
-	fast 2
+	fast 1

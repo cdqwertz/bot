@@ -2,15 +2,15 @@ import compare
 
 def train():
 	path_patterns = input("patterns: ")
-	path_words = input("words: ")
+	path_entities = input("entities: ")
 	
 	if path_patterns == "":
 		path_patterns = "patterns/patterns_en.txt"
 
-	if path_words == "":
-		path_words = "words/words_en.txt"
+	if path_entities == "":
+		path_entities = "entities/entities_en.txt"
 
-	lang = compare.language(path_patterns, path_words)
+	lang = compare.language(path_patterns, path_entities)
 
 	pattern = ""
 	while not(pattern in lang.patterns):

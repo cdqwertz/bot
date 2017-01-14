@@ -2,13 +2,12 @@ from message import *
 import compare
 
 class bot:
-	def __init__(self, name = "", language = compare.language("patterns/patterns_en.txt", "words/words_en.txt")):
+	def __init__(self, name = "", language = compare.language("patterns/patterns_en.txt", "entities/entities_en.txt")):
 		self.name = name
 		self.plugins = []
 		self.users = []
 		self.history = []
 		self.language = language
-		self.wait_for_answer = -1
 		
 	def add_plugin(self, plugin):
 		self.plugins.append(plugin)
@@ -19,7 +18,7 @@ class bot:
 	
 		output = ""
 		
-		if self.wait_for_answer == -1:
+		if msg.user.wait_for_answer == -1:
 			for i, plugin in enumerate(self.plugins):
 				result = plugin.on_msg(self, msg, i)
 				if result:
