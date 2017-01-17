@@ -55,9 +55,9 @@ while run:
 					
 			else:
 				if line.startswith(":") and params[1].lower() == "privmsg":
-					msg_user = line[1:line.find("!~")].strip(" ")
+					msg_user = line[1:line.find("!")].strip(" ")
 					msg_channel = params[2].strip(" ")
-					msg_text = line[line.find(":", 1) + 1:].strip(" ")
+					msg_text = line[line.find(":", 1) + 1:].strip(" ").lower()
 					
 					print("[msg] From:", msg_user, "Channel:", msg_channel, "Text:", msg_text)
 					
@@ -77,7 +77,7 @@ while run:
 					elif msg_channel == nick:
 						my_user = my_chatroom.get_user(msg_user, True)
 						out = my_chatroom.on_msg(message(msg_text, my_user))
-						if out:
+						if out and out != "":
 							send("PRIVMSG " + msg_user + " :" + out.text + "\r\n")
 							
 	
