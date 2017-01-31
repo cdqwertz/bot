@@ -1,3 +1,3 @@
 from compare import *
 
-print(generate_text([["Hello", "Hi", "Hey"], ["bot", ""]]))
+print(compare("Hi test", [["Hello", "Hi", "Hey"], "bot"]))

@@ -1,7 +1,8 @@
 default_bye = ("bye", "bbl")
 default_date = ("what", "whats", "what's"), ("is", ""), ("the", "today's", "todays"), "date", ("today", "")
-default_hello = ("hi", "hello", "hey")
+default_hello = ("hi", "hello", "hey"), ("bot", "")
 default_how_are_you = "how", "are", "you", ("today", "")
+default_location = "where", ("do", "are"), "you", ("live", "located")
 default_name = "what", "is", "your", "name"
 default_see_you_soon = "see", "you", ("soon", "")
 default_time = ("what", "whats", "what's"), ("is", ""), "the", "time"
@@ -9,4 +10,5 @@ math_add = "<a>", ("plus", "added", "+"), ("to", ""), "<b>", ("equals", "=", "")
 math_divide = "<a>", ("divided", "/"), ("by", ""), "<b>", ("equals", "=", "")
 math_multiply = "<a>", ("times", "multiplied", "*"), ("by", ""), "<b>", ("equals", "=", "")
 math_subtract = "<a>", ("minus", "-"), "<b>", ("equals", "=", "")
-test = 
+todo_new = "i", ("still", ""), ("need", "have"), "to", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]"
+todo_show = "what", "do", "i", ("still", ""), ("have", "need"), ("to", "todo"), ("do", ""), ("today", "")
