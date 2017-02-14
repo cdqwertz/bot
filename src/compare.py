@@ -100,9 +100,15 @@ class language:
 							pass
 						else:
 							parts = s.split(" ")
-							word_name = parts[0]
-							word_value = parts[1]
-							self.entities[name][word_name] = word_value
+							if len(parts) == 2:
+								word_name = parts[0]
+								word_value = parts[1]
+								self.entities[name][word_name] = word_value
+							elif len(parts) == 1:
+								word_name = parts[0]
+								#print(name, " ", word_name)
+								self.entities[name][word_name] = word_name
+
 				else:
 					name = line
 					self.entities[name] = {}
@@ -298,7 +304,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = Non
 		for word in string:
 			for k in entities.keys():
 				for w in entities[k].keys():
-					if compare_words(word, w) > 0.6:
+					if compare_words(word, w) > 0.65:
 						output[k] = entities[k][w]
 
 	output["result"] = result
