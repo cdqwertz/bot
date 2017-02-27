@@ -11,7 +11,12 @@ class bot:
 
 	def add_plugin(self, plugin):
 		self.plugins.append(plugin)
-		plugin.load(self)
+
+		try:
+			plugin.load(self)
+			print("[info][" + plugin.__class__.__name__ + "] loaded")
+		except AttributeError:
+			print("[warning][" + plugin.__class__.__name__ + "] load() not found")
 
 	def on_msg(self, msg):
 		msg.get_intent(self.language)

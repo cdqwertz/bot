@@ -291,6 +291,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = Non
 				output[pattern[j]] += string[i] + " "
 				m = True
 				score += 0.6
+				j -= 1
 
 			result = result and m
 			#print(" -> ", result)

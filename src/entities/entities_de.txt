@@ -1,0 +1,35 @@
+date
+	(word word)
+	heute today
+	morgen tomorrow
+	gestern yesterday
+	wochenende weekend
+
+time
+	(word word)
+	jetzt now
+	später later
+	bald soon
+
+look
+	(word word)
+	gut good
+	schlecht bad
+	großartig great
+	schön nice
+	ok ok
+
+feeling
+	(word word)
+	gut good
+	schlecht bad
+	großartig great
+	schön nice
+	ok ok
+	traurig sad
+	glücklich happy
+
+speed
+	(word word)
+	langsam slow
+	schnell fast

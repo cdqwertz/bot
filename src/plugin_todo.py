@@ -7,7 +7,7 @@ class plugin_todo():
 
 	def load(self, bot):
 		bot.language.register_pattern("todo_new", compare.pattern_to_string(
-						["i", ["still", ""], ["need", "have"], "to", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]", "[...]"]
+						["i", ["still", ""], ["need", "have"], "to", "[...]"]
 						))
 
 		bot.language.register_pattern("todo_show", compare.pattern_to_string(
