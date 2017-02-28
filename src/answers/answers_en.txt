@@ -1,0 +1,16 @@
+default_hello = ("Hello", "Hi", "Hey"), ("<user_name>", "")
+default_bye = ("Bye", "See you soon")
+default_how_are_you = "I am fine", ("and you?")
+default_name = "My name is", "<bot_name>"
+default_time = "It is", "<hour>", ":", "<minute>"
+default_date = "It is the", "<day>", "<month>", "<year>"
+default_location = "I live inside a computer"
+
+todo_new = "I added", "<item>", "to your todo list."
+todo_show = "You still need to", "<items>"
+todo_empty = "You do not have any items on your todo list"
+
+math_multiply = "<a>", "times", "<b>", "equals", "<c>"
+math_add = "<a>", "plus", "<b>", "equals", "<c>"
+math_subtract = "<a>", "minus", "<b>", "equals", "<c>"
+math_divide = "<a>", "divided by", "<b>", "equals", "<c>"

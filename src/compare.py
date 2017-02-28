@@ -1,15 +1,18 @@
 import utils, random
 
 class language:
-	def __init__(self, path_patterns, path_entities):
+	def __init__(self, path_patterns, path_entities, path_answers = "answers/answers_en.txt"):
 		self.patterns = {}
 		self.entities = {}
+		self.answers = {}
 
 		self.path = path_patterns
 		self.path_entities = path_entities
+		self.path_answers = path_answers
 
 		self.load_patterns()
 		self.load_entities()
+		self.load_answers()
 
 	def load_patterns(self):
 		string = utils.read_file(self.path)
@@ -21,13 +24,14 @@ class language:
 					self.patterns[parts[0].strip()] = parts[1].strip()
 
 	def save_patterns(self):
-		string = ""
-		keys = list(self.patterns.keys())
-		keys.sort()
-		for k in keys:
-			string += k + " = " + self.patterns[k] + "\n"
+		if False:
+			string = ""
+			keys = list(self.patterns.keys())
+			keys.sort()
+			for k in keys:
+				string += k + " = " + self.patterns[k] + "\n"
 
-		utils.save_file(self.path, string)
+			utils.save_file(self.path, string)
 
 
 	def get_pattern(self, name):
@@ -112,6 +116,18 @@ class language:
 				else:
 					name = line
 					self.entities[name] = {}
+
+	def load_answers(self):
+		string = utils.read_file(self.path_answers)
+		lines = string.split("\n")
+		for line in lines:
+			if line != "":
+				parts = line.split("=", 1)
+				if len(parts) == 2:
+					self.answers[parts[0].strip()] = parse_pattern(parts[1].strip())
+
+	def get_answer(self, name, vars):
+		return generate_text(self.answers[name], vars = vars)
 
 	def get_intent(self, string):
 		best_score = 0
@@ -312,12 +328,18 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = Non
 	output["score"] = score/word_count
 	return output
 
-def generate_text(pattern):
+def generate_text(pattern, vars = {}):
 	string = []
 	for i in pattern:
 		if type(i) == type([]):
-			string.append(random.choice(i))
+			t = random.choice(i)
+			if t in vars and t.startswith("<"):
+				t = vars[t]
+			string.append(t)
 		else:
-			string.append(i)
+			t = i
+			if t in vars and t.startswith("<"):
+				t = vars[t]
+			string.append(t)
 
 	return " ".join(string)

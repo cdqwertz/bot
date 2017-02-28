@@ -5,23 +5,6 @@ class plugin_math():
 	def __init__(self):
 		pass
 
-	def load(self, bot):
-		bot.language.register_pattern("math_multiply", compare.pattern_to_string(
-						["<a>", ["times", "multiplied", "*"], ["by", ""], "<b>", ["equals", "=", ""]]
-						))
-
-		bot.language.register_pattern("math_add", compare.pattern_to_string(
-						["<a>", ["plus", "added", "+"], ["to", ""], "<b>", ["equals", "=", ""]]
-						))
-
-		bot.language.register_pattern("math_subtract", compare.pattern_to_string(
-						["<a>", ["minus", "-"], "<b>", ["equals", "=", ""]]
-						))
-
-		bot.language.register_pattern("math_divide", compare.pattern_to_string(
-						["<a>", ["divided", "/"], ["by", ""], "<b>", ["equals", "=", ""]]
-						))
-
 	def is_number(self, string):
 		if string.startswith("-") and string[1:].isdigit():
 			return True
@@ -37,6 +20,8 @@ class plugin_math():
 		text = msg.text
 		out = ""
 
+		vars = {"<user_name>" : msg.user.name, "<bot_name>" : bot.name}
+
 		if msg.intent == "math_multiply":
 			values = msg.intent_data
 
@@ -44,7 +29,11 @@ class plugin_math():
 				a = float(values["<a>"])
 				b = float(values["<b>"])
 
-				out = values["<a>"] + " times " + values["<b>"] + " equals " + str(a * b)
+				vars["<a>"] = values["<a>"]
+				vars["<b>"] = values["<b>"]
+				vars["<c>"] = str(a*b)
+
+				out = bot.language.get_answer("math_multiply", vars)
 
 		elif msg.intent == "math_add":
 			values = msg.intent_data
@@ -53,7 +42,11 @@ class plugin_math():
 				a = float(values["<a>"])
 				b = float(values["<b>"])
 
-				out = values["<a>"] + " plus " + values["<b>"] + " equals " + str(a + b)
+				vars["<a>"] = values["<a>"]
+				vars["<b>"] = values["<b>"]
+				vars["<c>"] = str(a+b)
+
+				out = bot.language.get_answer("math_add", vars)
 
 		elif msg.intent == "math_subtract":
 			values = msg.intent_data
@@ -62,7 +55,11 @@ class plugin_math():
 				a = float(values["<a>"])
 				b = float(values["<b>"])
 
-				out = values["<a>"] + " minus " + values["<b>"] + " equals " + str(a - b)
+				vars["<a>"] = values["<a>"]
+				vars["<b>"] = values["<b>"]
+				vars["<c>"] = str(a-b)
+
+				out = bot.language.get_answer("math_subtract", vars)
 
 		elif msg.intent == "math_divide":
 			values = msg.intent_data
@@ -71,7 +68,11 @@ class plugin_math():
 				a = float(values["<a>"])
 				b = float(values["<b>"])
 
-				out = values["<a>"] + " divided by " + values["<b>"] + " equals " + str(a / b)
+				vars["<a>"] = values["<a>"]
+				vars["<b>"] = values["<b>"]
+				vars["<c>"] = str(a/b)
+
+				out = bot.language.get_answer("math_divide", vars)
 		else:
 			return None
 
