@@ -13,4 +13,4 @@ math_multiply = ("was", ""), ("ist", "gibt", ""), "<a>", ("mal", "*"), "<b>", ("
 math_subtract = ("was", ""), ("ist", "gibt", ""), "<a>", ("minus", "-"), "<b>", ("ist", "=", "")
 
 todo_new = "ich", ("muss", "sollte", "soll"), ("noch", "bald", ""), ("mal", ""), "[...]"
-todo_show = "was", ("muss", "sollte", "soll"), "ich", ("heute", ""), "machen"
+todo_show = "was", ("muss", "sollte", "soll", "steht"), ("ich", "auf"), ("heute", "jetzt", ""), ("machen", "todo"), ("liste", "")

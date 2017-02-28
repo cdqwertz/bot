@@ -279,7 +279,7 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = Non
 					break
 				elif w.startswith("<") and w.endswith(">"):
 					output[pattern[j]] = string[i]
-					score += 0.6
+					score += 0.5
 					m = True
 					break
 
@@ -293,20 +293,20 @@ def compare(string_raw = "",  pattern = None, pattern_raw = None, entities = Non
 				score += compare_words(pattern[j], string[i])
 			elif pattern[j] == "?":
 				m = True
-				score += 0.6
+				score += 0.5
 			elif pattern[j] == "":
 				m = True
 				i -= 1
 			elif pattern[j].startswith("<") and pattern[j].endswith(">"):
 				output[pattern[j]] = string[i]
 				m = True
-				score += 0.6
+				score += 0.5
 			elif pattern[j].startswith("[") and pattern[j].endswith("]"):
 				if not(pattern[j] in output):
 					output[pattern[j]] = ""
 				output[pattern[j]] += string[i] + " "
 				m = True
-				score += 0.6
+				score += 0.3
 				j -= 1
 
 			result = result and m

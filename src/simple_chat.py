@@ -7,6 +7,7 @@ import plugin_default
 import plugin_math
 import plugin_todo
 
+#my_bot = bot("bot", language = compare.language("patterns/patterns_de.txt", "entities/entities_de.txt", "answers/answers_de.txt"))
 my_bot = bot("bot")
 my_bot.add_plugin(plugin_default.plugin_default())
 my_bot.add_plugin(plugin_math.plugin_math())
