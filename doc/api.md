@@ -1,16 +1,16 @@
-#API
-###Plugins
+# API
+### Plugins
 ```python
 class plugin_test:
 	def __init__(self):
 		pass
-		
+
 	def on_msg(self, bot, msg):
 		text = msg.text
 		return message(text, bot)
 ```
 
-###Compare
+### Compare
 
 ```python
 import compare
@@ -18,15 +18,15 @@ import compare
 compare.compare(input("text: "), [["hi", "hello", "hey"], ["bot", ""]])
 ```
 
-####Patterns
-######Simple Pattern
+#### Patterns
+###### Simple Pattern
 ```python
 ["hi", "bot"]
 ```
 - hi bot -> true
 - hello -> false
 
-######Other Patterns
+###### Other Patterns
 ```python
 [["hi", "hello"], "bot"]
 ```
