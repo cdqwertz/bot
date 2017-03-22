@@ -1,10 +1,12 @@
 default_bye = ("tschüss", "bye"), ("bot", "")
 default_see_you_soon = "bis", "später"
 default_date = "was", "ist", "das", "heutige", "datum"
+default_date.2 = ("den", "der"), ("wie", "wievielten"), ("vielten", ""), ("haben", "ist"), ("wir", ""), "heute"
 default_hello = ("hi", "hallo", "hey"), ("bot", "")
 default_how_are_you = "wie", ("geht", "geht's"), ("es", ""), ("dir", "")
 default_location = "wo", ("lebst", "bist"), "du"
 default_name = "was", "ist", "dein", "name"
+default_name.2 = "wie", "heißt", "du"
 default_time = "wie", ("spät", "viel"), ("uhr", ""), ("ist", "hat"), "es"
 
 math_add = ("was", ""), ("ist", "gibt", ""), "<a>", ("plus", "+"), "<b>", ("ist", "=", "")

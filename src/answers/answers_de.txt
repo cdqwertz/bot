@@ -2,7 +2,7 @@ default_hello = ("Hallo", "Hi", "Hey"), ("<user_name>", "")
 default_bye = ("Tschüss", "Bis später")
 default_how_are_you = "Mir geht es gut" ("und dir?")
 default_name = "Ich heiße", "<bot_name>"
-default_time = "Es ist", "<hour>", ":", "<minute>"
+default_time = "Es ist", "<hour>", "Uhr", "<minute>"
 default_date = "Es ist der", "<day>", "<month>", "<year>"
 default_location = "Ich lebe in einem Computer"
 

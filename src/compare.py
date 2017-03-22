@@ -143,6 +143,8 @@ class language:
 				best = name
 				best_output = out
 
+		best = best.split(".")[0]
+
 		return best, best_output
 
 def get_pattern_len(pattern):
