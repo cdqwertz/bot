@@ -8,6 +8,7 @@ class bot:
 		self.users = []
 		self.history = []
 		self.language = language
+		self.events = {}
 
 	def add_plugin(self, plugin):
 		self.plugins.append(plugin)
@@ -17,6 +18,19 @@ class bot:
 			print("[info][" + plugin.__class__.__name__ + "] loaded")
 		except AttributeError:
 			print("[warning][" + plugin.__class__.__name__ + "] load() not found")
+
+	def on(self, event, func):
+		if event in self.events.keys():
+			self.events[event].append(func)
+		else:
+			self.events[event] = [func]
+
+	def event(self, event):
+		if not(event in self.events.keys()):
+			return
+			
+		for func in self.events[event]:
+			func()
 
 	def on_msg(self, msg):
 		msg.get_intent(self.language)

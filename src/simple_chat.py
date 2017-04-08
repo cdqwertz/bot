@@ -12,6 +12,7 @@ my_bot = bot("bot")
 my_bot.add_plugin(plugin_default.plugin_default())
 my_bot.add_plugin(plugin_math.plugin_math())
 my_bot.add_plugin(plugin_todo.plugin_todo())
+my_bot.event("loaded")
 
 my_chatroom = chatroom(my_bot)
 
@@ -27,4 +28,5 @@ while run:
 		if out:
 			print(out.user.name + ": " + out.text)
 	else:
+		my_bot.event("quit")
 		run = False
