@@ -14,3 +14,6 @@ math_subtract = ("what", ""), ("is", ""), "<a>", ("minus", "-"), "<b>", ("equals
 
 todo_new = "i", ("still", ""), ("need", "have"), "to", "[...]"
 todo_show = "what", "do", "i", ("still", ""), ("have", "need"), ("to", "todo"), ("do", ""), ("today", "")
+
+fun_coin = "flip", ("a", ""), "coin"
+fun_dice = "roll", ("a", ""), "dice"

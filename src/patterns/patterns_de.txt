@@ -16,3 +16,6 @@ math_subtract = ("was", ""), ("ist", "gibt", ""), "<a>", ("minus", "-"), "<b>", 
 
 todo_new = "ich", ("muss", "sollte", "soll"), ("noch", "bald", ""), ("mal", ""), "[...]"
 todo_show = "was", ("muss", "sollte", "soll", "steht"), ("ich", "auf"), ("heute", "jetzt", ""), ("machen", "todo"), ("liste", "")
+
+fun_coin = ("werfe", "wirf"), ("eine", ""), "münze"
+fun_dice = ("würfel", "würfle")

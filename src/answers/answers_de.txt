@@ -14,3 +14,7 @@ math_multiply = "<a>", "mal", "<b>", "gibt", "<c>"
 math_add = "<a>", "plus", "<b>", "gibt", "<c>"
 math_subtract = "<a>", "minus", "<b>", "gibt", "<c>"
 math_divide = "<a>", "geteilt durch", "<b>", "gibt", "<c>"
+
+fun_tails = "Zahl"
+fun_heads = "Kopf"
+fun_dice = "<num>"

@@ -29,6 +29,17 @@ class plugin_todo():
 			else:
 				vars["<items>"] = ", ".join(msg.user.data["todo:list"])
 				out = bot.language.get_answer("todo_show", vars)
+
+		elif msg.intent == "todo_done":
+			if not("todo:list" in msg.user.data):
+				msg.user.data["todo:list"] = []
+			else:
+				if len(msg.user.data["todo:list"]) == 0:
+					out = bot.language.get_answer("todo_empty", vars)
+				else:
+					vars["<items>"] = ", ".join(msg.user.data["todo:list"])
+					out = bot.language.get_answer("todo_show", vars)
+
 		else:
 			return None
 

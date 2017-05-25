@@ -6,11 +6,18 @@ This is my chatbot. It is still WIP.
 - What's today's date?
 
 ###### Math
-- Calculations
+- a + b
+- a - b
+- a * b
+- a / b
 
-###### TODO List
+###### Todo List
 - I still need to ...
 - What do I have to do today?
+
+###### Fun
+- Flip a coin
+- Roll a dice
 
 ### License
 See LICENSE.txt

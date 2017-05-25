@@ -8,9 +8,13 @@ default_location = "I live inside a computer"
 
 todo_new = "I added", "<item>", "to your todo list."
 todo_show = "You still need to", "<items>"
-todo_empty = "You do not have any items on your todo list"
+todo_empty = "You do not have any items on your todo list."
 
 math_multiply = "<a>", "times", "<b>", "equals", "<c>"
 math_add = "<a>", "plus", "<b>", "equals", "<c>"
 math_subtract = "<a>", "minus", "<b>", "equals", "<c>"
 math_divide = "<a>", "divided by", "<b>", "equals", "<c>"
+
+fun_tails = "tails"
+fun_heads = "heads"
+fun_dice = "<num>"
