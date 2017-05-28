@@ -78,3 +78,6 @@ class plugin_math():
 
 
 		return message(out, bot)
+
+def setup_plugin():
+	return plugin_math()

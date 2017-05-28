@@ -1,5 +1,5 @@
 from message import *
-import compare
+import compare, os, sys
 
 class bot:
 	def __init__(self, name = "", language = compare.language("patterns/patterns_en.txt", "entities/entities_en.txt")):
@@ -9,6 +9,16 @@ class bot:
 		self.history = []
 		self.language = language
 		self.events = {}
+
+	def load_plugins(self):
+		plugins = os.listdir("plugins/")
+		sys.path.append("plugins/")
+
+		for plugin_name in plugins:
+			if plugin_name.endswith(".py"):
+				path = plugin_name[:-3]
+				plugin = __import__(path).setup_plugin()
+				self.add_plugin(plugin)
 
 	def add_plugin(self, plugin):
 		self.plugins.append(plugin)
@@ -28,7 +38,7 @@ class bot:
 	def event(self, event):
 		if not(event in self.events.keys()):
 			return
-			
+
 		for func in self.events[event]:
 			func()
 

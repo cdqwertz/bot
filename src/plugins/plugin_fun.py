@@ -25,3 +25,6 @@ class plugin_fun():
 			return None
 
 		return message(out, bot)
+
+def setup_plugin():
+	return plugin_fun()

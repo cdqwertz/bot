@@ -3,19 +3,9 @@ from bot import *
 from user import *
 from chatroom import *
 
-import plugin_default
-import plugin_math
-import plugin_todo
-import plugin_fun
-
 #my_bot = bot("bot", language = compare.language("patterns/patterns_de.txt", "entities/entities_de.txt", "answers/answers_de.txt"))
 my_bot = bot("bot")
-
-my_bot.add_plugin(plugin_default.plugin_default())
-my_bot.add_plugin(plugin_math.plugin_math())
-my_bot.add_plugin(plugin_todo.plugin_todo())
-my_bot.add_plugin(plugin_fun.plugin_fun())
-
+my_bot.load_plugins()
 my_bot.event("loaded")
 
 my_chatroom = chatroom(my_bot)

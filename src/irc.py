@@ -4,10 +4,6 @@ from bot import *
 from user import *
 from chatroom import *
 
-import plugin_default
-import plugin_math
-import plugin_todo
-
 #setup irc
 def send(text):
 	global s
@@ -31,9 +27,7 @@ send("NICK " + nick + "\r\n")
 
 #setup bot
 my_bot = bot(nick)
-my_bot.add_plugin(plugin_default.plugin_default())
-my_bot.add_plugin(plugin_math.plugin_math())
-my_bot.add_plugin(plugin_todo.plugin_todo())
+my_bot.load_plugins()
 
 my_chatroom = chatroom(my_bot)
 my_chatroom.add_user(user(owner))
@@ -44,34 +38,34 @@ while run:
 	try:
 		data = str(s.recv(1024 * 2).decode("utf-8"))
 		print("[data] " + data)
-		
+
 		lines = data.split("\n")
-		
+
 		for line in lines:
 			params = line.strip("\n\r ").split(" ")
-	
+
 			if data.find("PING") != -1:
 				send("PONG " + params[1] + "\r\n")
-					
+
 			else:
 				if line.startswith(":") and params[1].lower() == "privmsg":
 					msg_user = line[1:line.find("!")].strip(" ")
 					msg_channel = params[2].strip(" ")
 					msg_text = line[line.find(":", 1) + 1:].strip(" ").lower()
-					
+
 					print("[msg] From:", msg_user, "Channel:", msg_channel, "Text:", msg_text)
-					
+
 					if msg_user == owner and msg_text.startswith("!"):
 						parts = msg_text.split(" ")
-						
+
 						for i, part in enumerate(parts):
 							parts[i] = part.strip("\r\n ").lower()
-			
+
 						print("[command]", parts[0])
-						
+
 						if parts[0] == "!join":
 							send("JOIN " + parts[1] + "\r\n")
-							
+
 						if parts[0] == "!quit":
 							run = False
 					elif msg_channel == nick:
@@ -79,17 +73,17 @@ while run:
 						out = my_chatroom.on_msg(message(msg_text, my_user))
 						if out and out != "":
 							send("PRIVMSG " + msg_user + " :" + out.text + "\r\n")
-							
-	
+
+
 	except KeyboardInterrupt:
 		run = False
 		continue
-		
+
 	except Exception as e:
 		print("[error]" + str(e))
 		continue
 
-time.sleep(0.1)	
+time.sleep(0.1)
 send("QUIT :quit\r\n")
 time.sleep(0.3)
 s.close()

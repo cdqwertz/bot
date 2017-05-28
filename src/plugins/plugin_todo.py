@@ -44,3 +44,6 @@ class plugin_todo():
 			return None
 
 		return message(out, bot)
+
+def setup_plugin():
+	return plugin_todo()

@@ -48,3 +48,6 @@ class plugin_default():
 			return None
 
 		return message(out, bot)
+
+def setup_plugin():
+	return plugin_default()
